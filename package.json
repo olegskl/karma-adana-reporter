@@ -1,0 +1,36 @@
+{
+  "name": "karma-adana-reporter",
+  "version": "0.0.1",
+  "description": "Karma coverage with Adana",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "karma",
+    "coverage",
+    "adana"
+  ],
+  "author": "Oleg Sklyanchuk <sklyanchuk@gmail.com> (http://olegskl.com)",
+  "license": "MIT",
+  "dependencies": {
+    "adana-analyze": "^0.1.1",
+    "bluebird": "^3.2.1",
+    "chalk": "^1.1.1",
+    "deep-extend": "^0.4.1",
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.3.26",
+    "babel-eslint": "^4.1.6",
+    "babel-preset-es2015": "^6.3.13",
+    "eslint": "^1.10.3",
+    "eslint-config-metalab": "^1.0.0-rc.4",
+    "eslint-plugin-filenames": "^0.2.0",
+    "eslint-plugin-import": "^0.11.0",
+    "eslint-plugin-react": "^3.11.2"
+  }
+}
