@@ -1,6 +1,5 @@
 {
   "extends": [
-    "metalab/base",
-    "metalab/react"
+    "metalab/standard"
   ]
 }

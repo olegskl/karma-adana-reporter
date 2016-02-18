@@ -28,9 +28,6 @@
     "babel-eslint": "^4.1.6",
     "babel-preset-es2015": "^6.3.13",
     "eslint": "^1.10.3",
-    "eslint-config-metalab": "^1.0.0-rc.4",
-    "eslint-plugin-filenames": "^0.2.0",
-    "eslint-plugin-import": "^0.11.0",
-    "eslint-plugin-react": "^3.11.2"
+    "eslint-config-metalab": "^0.3.0",
   }
 }
