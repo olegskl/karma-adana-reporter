@@ -1,7 +1,14 @@
-export default function requireFormatter(name) {
-  const module = require(`adana-format-${name}`);
-  if (module.__esModule && module.default) {
-    return module.default;
+/**
+ * Requires an npm-installed formatter lib.
+ * @param   {String}   nameSuffix "json", "text", etc.
+ * @returns {Function}            The formatter function.
+ */
+export default function requireFormatter(nameSuffix) {
+  // Assuming that the formatter has been previously installed:
+  const formatter = require(`adana-format-${nameSuffix}`);
+  // Interop require with Babel 6 default exports:
+  if (formatter.__esModule && formatter.default) {
+    return formatter.default;
   }
-  return module;
+  return formatter;
 }
