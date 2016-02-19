@@ -1,4 +1,7 @@
 {
+  "env": {
+    "node": true
+  },
   "extends": [
     "metalab/standard"
   ]
