@@ -2,9 +2,9 @@
   "name": "karma-adana-reporter",
   "version": "0.0.1",
   "description": "Karma coverage with Adana",
-  "main": "lib/karma-plugin.js",
+  "main": "dist/karma-plugin.js",
   "scripts": {
-    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
+    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
