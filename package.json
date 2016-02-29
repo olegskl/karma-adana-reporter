@@ -1,13 +1,17 @@
 {
   "name": "karma-adana-reporter",
   "version": "0.0.1",
-  "description": "Karma coverage with Adana",
+  "description": "Coverage reporter in Karma using Adana for ES6+",
   "main": "dist/karma-plugin.js",
   "scripts": {
     "transpile": "babel src --out-dir dist",
     "prepublish": "npm run lint && npm run transpile",
     "lint": "eslint src/**/*.js",
     "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olegskl/karma-adana-reporter.git"
   },
   "keywords": [
     "karma",
@@ -16,6 +20,10 @@
   ],
   "author": "Oleg Sklyanchuk <sklyanchuk@gmail.com> (http://olegskl.com)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olegskl/karma-adana-reporter/issues"
+  },
+  "homepage": "https://github.com/olegskl/karma-adana-reporter",
   "dependencies": {
     "adana-analyze": "^0.1.2",
     "bluebird": "^3.3.3",
