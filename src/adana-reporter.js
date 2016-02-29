@@ -1,3 +1,8 @@
+/**
+ * Adana reporter module.
+ * @module adana-reporter
+ */
+
 import fs from 'fs';
 import path from 'path';
 import Promise, { promisify } from 'bluebird';
@@ -9,21 +14,52 @@ import determineThresholds from './determine-thresholds';
 const mkdir = promisify(mkdirp);
 const writeFile = promisify(fs.writeFile);
 
+/**
+ * AdanaReporter.
+ * @constructor
+ * @param {Object} config - Adana config from karma conf file.
+ */
 export default function AdanaReporter(config) {
   /**
    * Asynchronous tasks (i.e. writing to filesystem).
-   * @type {Array<Promise>}
+   * @type {[Promise]}
    */
   const asyncTasks = [];
 
+  /**
+   * Reporter configuration.
+   * @type {Object}
+   * @property {String} dir - relative path of output directory
+   * @property {Array} formatters - list of adana formatters to use
+   * @property {Object} thresholds - code coverage thresholds
+   */
   const reporterConfig = config.adanaReporter;
-  const thresholds = determineThresholds(reporterConfig);
+
+  /**
+   * Code coverage thresholds.
+   * @type {Object}
+   * @property {Object} global - Average across multiple files.
+   * @property {Object} local - Local per-file coverage thresholds.
+   */
+  const thresholds = determineThresholds(reporterConfig.thresholds);
+
+  /**
+   * Adana coverage result formatters.
+   * @type {[Object]}
+   */
   const formatters = (reporterConfig.formatters || [])
     .map(formatterConfig => {
       formatterConfig.formatter = requireFormatter(formatterConfig.type);
       return formatterConfig;
     });
 
+  /**
+   * Browser complete event handler.
+   * @param {Object} browser - Information about the browser.
+   * @param {Object} result - Runner results.
+   * @param {Object} result.coverage - Adana coverage object.
+   * @returns {undefined} Nothing is returned.
+   */
   this.onBrowserComplete = function(browser, { coverage }) {
     formatters.forEach(formatterConfig => {
       const formattedText = formatterConfig.formatter(coverage, {
@@ -66,4 +102,8 @@ export default function AdanaReporter(config) {
   };
 }
 
+/**
+ * Karma-specific dependency injection.
+ * @type {[String]}
+ */
 AdanaReporter.$inject = [ 'config' ];
