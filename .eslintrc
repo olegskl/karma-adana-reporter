@@ -3,7 +3,5 @@
   "env": {
     "node": true
   },
-  "extends": [
-    "meetic"
-  ]
+  "extends": "meetic"
 }
