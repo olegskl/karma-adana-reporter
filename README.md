@@ -1,5 +1,7 @@
 # karma-adana-reporter
 
+[![NPM version](http://img.shields.io/npm/v/karma-adana-reporter.svg)](https://www.npmjs.org/package/karma-adana-reporter)
+
 Unit test coverage reporter in [Karma](https://github.com/karma-runner/karma) using [Adana](https://github.com/adana-coverage/babel-plugin-transform-adana) for ES6+.
 
 ## Installation
