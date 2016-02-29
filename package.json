@@ -4,8 +4,10 @@
   "description": "Karma coverage with Adana",
   "main": "dist/karma-plugin.js",
   "scripts": {
-    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "transpile": "babel src --out-dir dist",
+    "prepublish": "npm run lint && npm run transpile",
+    "lint": "eslint src/**/*.js",
+    "test": "npm run lint"
   },
   "keywords": [
     "karma",
