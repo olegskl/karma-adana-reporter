@@ -1,6 +1,6 @@
 /**
- * Adana reporter for Karma.
- * @module plugin
+ * Adana reporter plugin for Karma.
+ * @module karma-plugin
  */
 
 import AdanaReporter from './adana-reporter';
