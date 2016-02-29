@@ -15,8 +15,8 @@
   "author": "Oleg Sklyanchuk <sklyanchuk@gmail.com> (http://olegskl.com)",
   "license": "MIT",
   "dependencies": {
-    "adana-analyze": "^0.1.1",
-    "bluebird": "^3.2.1",
+    "adana-analyze": "^0.1.2",
+    "bluebird": "^3.3.3",
     "chalk": "^1.1.1",
     "deep-extend": "^0.4.1",
     "mkdirp": "^0.5.1"
