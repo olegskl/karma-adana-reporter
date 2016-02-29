@@ -5,9 +5,9 @@
 
 import fs from 'fs';
 import path from 'path';
-import Promise, { promisify } from 'bluebird';
+import Promise, {promisify} from 'bluebird';
 import mkdirp from 'mkdirp';
-import { stripColor } from 'chalk';
+import {stripColor} from 'chalk';
 import requireFormatter from './require-formatter';
 import determineThresholds from './determine-thresholds';
 
@@ -20,6 +20,7 @@ const writeFile = promisify(fs.writeFile);
  * @param {Object} config - Adana config from karma conf file.
  */
 export default function AdanaReporter(config) {
+
   /**
    * Asynchronous tasks (i.e. writing to filesystem).
    * @type {[Promise]}
@@ -60,11 +61,11 @@ export default function AdanaReporter(config) {
    * @param {Object} result.coverage - Adana coverage object.
    * @returns {undefined} Nothing is returned.
    */
-  this.onBrowserComplete = function(browser, { coverage }) {
+  this.onBrowserComplete = function (browser, {coverage}) {
     formatters.forEach(formatterConfig => {
       const formattedText = formatterConfig.formatter(coverage, {
         environment: browser,
-        thresholds,
+        thresholds
       });
 
       if (formatterConfig.show) {
@@ -91,7 +92,7 @@ export default function AdanaReporter(config) {
    * @param {Function} done - Karma completion callback.
    * @returns {undefined} Nothing is returned.
    */
-  this.onExit = function(done) {
+  this.onExit = function (done) {
     // Karma runner will complete before we finish writing
     // report files to the filesystem, so let's wait for
     // all those asynchronous tasks to finish before
@@ -106,4 +107,4 @@ export default function AdanaReporter(config) {
  * Karma-specific dependency injection.
  * @type {[String]}
  */
-AdanaReporter.$inject = [ 'config' ];
+AdanaReporter.$inject = ['config'];

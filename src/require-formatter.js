@@ -12,7 +12,7 @@ export default function requireFormatter(nameSuffix) {
   // Assuming that the formatter has been previously installed:
   const formatter = require(`adana-format-${nameSuffix}`);
   // Interop require with Babel 6 default exports:
-  if (formatter.__esModule && formatter.default) {
+  if (formatter.__esModule && formatter.default) { // eslint-disable-line no-underscore-dangle
     return formatter.default;
   }
   return formatter;

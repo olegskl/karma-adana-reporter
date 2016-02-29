@@ -16,14 +16,14 @@ const defaultThresholds = {
     statement: 0,
     branch: 0,
     function: 0,
-    line: 0,
+    line: 0
   },
   local: {
     statement: 0,
     branch: 0,
     function: 0,
-    line: 0,
-  },
+    line: 0
+  }
 };
 
 /**

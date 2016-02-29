@@ -15,5 +15,5 @@ import AdanaReporter from './adana-reporter';
  * @property {String} reporter:adana - Karma-specific declaration.
  */
 module.exports = {
-  'reporter:adana': [ 'type', AdanaReporter ],
+  'reporter:adana': ['type', AdanaReporter]
 };
