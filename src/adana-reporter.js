@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { promisify } from 'bluebird';
+import Promise, { promisify } from 'bluebird';
 import mkdirp from 'mkdirp';
 import { stripColor } from 'chalk';
 import requireFormatter from './require-formatter';
@@ -10,6 +10,12 @@ const mkdir = promisify(mkdirp);
 const writeFile = promisify(fs.writeFile);
 
 export default function AdanaReporter(config) {
+  /**
+   * Asynchronous tasks (i.e. writing to filesystem).
+   * @type {Array<Promise>}
+   */
+  const asyncTasks = [];
+
   const reporterConfig = config.adanaReporter;
   const thresholds = determineThresholds(reporterConfig);
   const formatters = (reporterConfig.formatters || [])
@@ -37,15 +43,27 @@ export default function AdanaReporter(config) {
           browser.name,
           formatterConfig.save
         );
-        mkdir(path.dirname(fullpath))
-          .then(() => writeFile(fullpath, stripColor(formattedText)));
+        asyncTasks.push(mkdir(path.dirname(fullpath)).then(() => {
+          return writeFile(fullpath, stripColor(formattedText));
+        }));
       }
     });
   };
 
-  // this.onExit = function (done) {
-  //   this.all.finally(() => done());
-  // };
+  /**
+   * Karma exit event handler.
+   * @param {Function} done - Karma completion callback.
+   * @returns {undefined} Nothing is returned.
+   */
+  this.onExit = function(done) {
+    // Karma runner will complete before we finish writing
+    // report files to the filesystem, so let's wait for
+    // all those asynchronous tasks to finish before
+    // declaring that we're done:
+    Promise
+      .all(asyncTasks)
+      .finally(() => done());
+  };
 }
 
 AdanaReporter.$inject = [ 'config' ];
