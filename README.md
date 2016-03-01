@@ -19,7 +19,7 @@ In addition to karma-adana-reporter you will need [babel-plugin-transform-adana]
 In your [karma configuration file](https://karma-runner.github.io/0.13/config/configuration-file.html) declare the adana reporter.
 
 ```js
-reporters: [ 'adana' ]
+reporters: ['adana']
 ```
 
 Then specify the adana reporter options. These options resemble the options of the [karma-coverage](https://github.com/karma-runner/karma-coverage) plugin.
@@ -66,10 +66,10 @@ Follow the installation steps provided on [karma-browserify usage](https://githu
 ```js
 browserify: {
   transform: [
-    [ 'babelify', {
-      presets: [ 'es2015' ],
+    ['babelify', {
+      presets: ['es2015'],
       plugins: [
-        [ 'transform-adana', { only: '**/*.js' } ]
+        ['transform-adana', {only: '**/*.js'}]
       ]
     }]
   ]
@@ -85,7 +85,7 @@ Configure your `.babelrc` file with [env options](https://babeljs.io/docs/usage/
   "env": {
     "test": {
       "plugins": [
-        [ "transform-adana", { "only": "src/**/*.js" } ]
+        ["transform-adana", {"only": "src/**/*.js"}]
       ]
     }
   }
