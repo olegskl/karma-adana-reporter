@@ -55,6 +55,15 @@ export default function AdanaReporter(config) {
     });
 
   /**
+   * Report run start handler.
+   * @param {Array} browsers - List of browsers where the tests will run.
+   * @return {undefined} Nothing is returned.
+   */
+  this.onRunStart = function (browsers) {
+    this.isMultiFolderReport = browsers.length !== 0;
+  };
+
+  /**
    * Browser complete event handler.
    * @param {Object} browser - Information about the browser.
    * @param {Object} result - Runner results.
@@ -75,11 +84,10 @@ export default function AdanaReporter(config) {
       }
 
       if (formatterConfig.save) {
-        const fullpath = path.join(
-          reporterConfig.dir,
-          browser.name,
-          formatterConfig.save
-        );
+        const fullpath = this.isMultiFolderReport ?
+          path.join(reporterConfig.dir, browser.name, formatterConfig.save) :
+          path.join(reporterConfig.dir, formatterConfig.save);
+
         asyncTasks.push(mkdir(path.dirname(fullpath)).then(() => {
           return writeFile(fullpath, stripColor(formattedText));
         }));
