@@ -60,7 +60,7 @@ export default function AdanaReporter(config) {
    * @return {undefined} Nothing is returned.
    */
   this.onRunStart = function (browsers) {
-    this.isMultiFolderReport = browsers.length !== 0;
+    this.isMultiFolderReport = browsers.length !== 1;
   };
 
   /**
