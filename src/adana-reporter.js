@@ -3,11 +3,13 @@
  * @module adana-reporter
  */
 
+/* eslint-disable no-console */
+
 import fs from 'fs';
 import path from 'path';
 import Promise, {promisify} from 'bluebird';
 import mkdirp from 'mkdirp';
-import {stripColor} from 'chalk';
+import {red, stripColor} from 'chalk';
 import requireFormatter from './require-formatter';
 import determineThresholds from './determine-thresholds';
 
@@ -71,6 +73,14 @@ export default function AdanaReporter(config) {
    * @returns {undefined} Nothing is returned.
    */
   this.onBrowserComplete = function (browser, {coverage}) {
+    // If there's a syntax error, Adana will not be able to run
+    // which results in `undefined` coverage object and there's
+    // nothing we can do about it except aborting:
+    if (!coverage) {
+      console.log(red('\nAdana was unable to generate code coverage.\n'));
+      return;
+    }
+
     formatters.forEach(formatterConfig => {
       const formattedText = formatterConfig.formatter(coverage, {
         environment: browser,
@@ -80,7 +90,7 @@ export default function AdanaReporter(config) {
       if (formatterConfig.show) {
         // Dump formatted text to console,
         // and surround with single line margins:
-        console.log(`\n${formattedText}\n`); // eslint-disable-line
+        console.log(`\n${formattedText}\n`);
       }
 
       if (formatterConfig.save) {
