@@ -1,6 +1,6 @@
 {
   "name": "karma-adana-reporter",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Coverage reporter in Karma using Adana for ES6+",
   "main": "dist/karma-plugin.js",
   "scripts": {
